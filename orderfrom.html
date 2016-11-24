@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>提交订单</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script>  
+$(function(){  
+    var t = $("#quantity");  
+    $("#add").click(function(){  
+        t.val(parseInt(t.val())+1);  
+        $("#min").removeAttr("disabled");                 //当按加1时，解除$("#min")不可读状态  
+        setTotal();  
+    })  
+    $("#min").click(function(){  
+               if (parseInt(t.val())>1) {                     //判断数量值大于1时才可以减少  
+                t.val(parseInt(t.val())-1)  
+                }else{  
+                $("#min").attr("disabled","disabled")        //当$("#min")为1时，$("#min")不可读状态  
+               }  
+        setTotal();  
+    })  
+    function setTotal(){  
+        $("#total").html((parseInt(t.val())*80).toFixed(2));  
+    }  
+    setTotal();  
+})  
+  
+</script>  
+	<style type="text/css">
+		*{
+		font-family: "楷体";
+		font-size: 20px;
+		background-image: url(./images/background2.png);
+	}
+	</style>
+</head>
+<body>
+<div data-role="page" data-theme="a">
+	<div data-role="header" data-position="fixed">
+		<span>
+			<a href="content.html" data-role="button"  data-icon="carat-l" data-iconpos="notext" data-add-back-btn="true" rel="external">返回</a>&nbsp;&nbsp;提交订单
+		</span>
+	</div>
+	<div data-role="content">
+	 
+	<hr/>
+		<ul data-role="listview">
+			<li style="height: 100px;"><a href="#">河北师范大学<br/>XXX 先生 152xxxx1234</a></li>
+		</ul>
+		<ul data-role="listview">
+			<li>蛋糕1 </li>
+			<li>单价：￥80</li>
+			<li>配送费：￥0</li>
+			<li>
+			数量：
+				<p>
+					<input id="min" name="" type="button" value="-" data-inline="true"/>  
+					<input id="quantity" name="" type="text" value="1" data-inline="true" />
+					<input id="add" name="" type="button" value="+" data-inline="true"/>
+				</p>
+			</li>
+			<li>小计：<label id="total"></label></li>
+		</ul>
+		<p>&nbsp</p>
+		<ul data-role="listview">
+			<li>支付方式</li>
+			<li>抵用券</li>
+			<li>总价:￥80</li>
+		</ul>
+	</div>
+	<p>&nbsp</p>
+	<div data-role="footer" data-position="fixed" >
+		<div class="ui-grid-b" style="height: 35px">
+			<div class="ui-block-a">￥80</div>
+			<div class="ui-block-b">&nbsp;</div>
+			<div class="ui-block-c "><a href="#" style="text-decoration: none;text-align: center">提交订单</a></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
